@@ -3,7 +3,7 @@ public with sharing class MaintenanceRequestHelper {
         List<Case> newCases = new List<Case>();
 
         for(Case closedCase : closedCases) {
-            Case c = new Case(
+            Case caseTemp = new Case(
                 type='Routine Maintenance',
                 Vehicle__c = closedCase.Vehicle__c,
                 Equipment__c = closedCase.Equipment__c,
@@ -11,7 +11,8 @@ public with sharing class MaintenanceRequestHelper {
                 status = 'New',
                 Date_Due__c = Date.today()
             );
-            newCases.add(c);
+            
+            newCases.add(caseTemp);
         }
         insert newCases;
     }
